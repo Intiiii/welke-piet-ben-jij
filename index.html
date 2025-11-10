@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welke Piet ben jij? - Sinterklaasjournaal Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎩 Welke Piet ben jij? 🎁</h1>
+            <p>Ontdek welke Piet uit het Sinterklaasjournaal het beste bij jou past!</p>
+        </header>
+
+        <main>
+            <!-- Start scherm -->
+            <div id="start-screen" class="screen active">
+                <div class="welcome-content">
+                    <div class="sinterklaas-icons">
+                        <span class="icon">🎅</span>
+                        <span class="icon">🎭</span>
+                        <span class="icon">📜</span>
+                        <span class="icon">🍪</span>
+                    </div>
+                    <h2>Ben je klaar om te ontdekken welke Piet je bent?</h2>
+                    <p>Beantwoord een paar leuke vragen en we vertellen je welke Piet het beste bij jou past!</p>
+                    <button id="start-btn" class="btn-primary">Start de Quiz!</button>
+                </div>
+            </div>
+
+            <!-- Quiz vragen -->
+            <div id="quiz-screen" class="screen">
+                <div class="quiz-content">
+                    <div class="progress-bar">
+                        <div id="progress" class="progress-fill"></div>
+                    </div>
+                    <div class="question-counter">
+                        <span id="current-question">1</span> van <span id="total-questions">8</span>
+                    </div>
+                    
+                    <div id="question-container">
+                        <h3 id="question-text"></h3>
+                        <div id="answers-container" class="answers-grid">
+                            <!-- Antwoorden worden dynamisch ingeladen -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resultaat scherm -->
+            <div id="result-screen" class="screen">
+                <div class="result-content">
+                    <h2>Gefeliciteerd!</h2>
+                    <div id="result-piet" class="result-piet">
+                        <!-- Piet resultaat wordt hier weergegeven -->
+                    </div>
+                    <div id="result-description" class="result-description">
+                        <!-- Beschrijving van de Piet -->
+                    </div>
+                    <button id="restart-btn" class="btn-secondary">Doe de quiz opnieuw</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>🎶 Een Sinterklaasjournaal quiz voor de pakjesavond! 🎶</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
