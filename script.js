@@ -92,7 +92,7 @@ const quizData = [
         ]
     },
     {
-        question: "Wat typeer jou het beste?",
+        question: "Wat typeert jou het beste?",
         answers: [
             { text: "Ik ben een natuurlijke leider", type: "hoofdpiet" },
             { text: "Ik ben een genieter van het leven", type: "snoeppiet" },
@@ -228,6 +228,8 @@ const resultPiet = document.getElementById('result-piet');
 const resultDescription = document.getElementById('result-description');
 const chartCanvas = document.getElementById('pepernoot-chart');
 const chartLegend = document.getElementById('chart-legend');
+const statsSection = document.getElementById('stats-section');
+const toggleStatsBtn = document.getElementById('toggle-stats-btn');
 
 // Kleuren per Piet-type (voor chart)
 const pietColors = {
@@ -250,6 +252,18 @@ const pietColors = {
 // Event listeners
 startBtn.addEventListener('click', startQuiz);
 restartBtn.addEventListener('click', restartQuiz);
+if (toggleStatsBtn) {
+    toggleStatsBtn.addEventListener('click', () => {
+        const willShow = statsSection.classList.contains('hidden');
+        statsSection.classList.toggle('hidden');
+        toggleStatsBtn.setAttribute('aria-expanded', String(willShow));
+        toggleStatsBtn.textContent = willShow ? 'Verberg statistieken' : 'Toon statistieken';
+        if (willShow) {
+            renderPepernootChart(scores);
+            renderLegend(scores);
+        }
+    });
+}
 
 // Functies
 function startQuiz() {
@@ -271,8 +285,9 @@ function showQuestion() {
     // Leeg antwoorden container
     answersContainer.innerHTML = '';
     
-    // Voeg antwoorden toe
-    question.answers.forEach((answer, index) => {
+    // Shuffle en voeg antwoorden toe
+    const shuffled = shuffleArray(question.answers);
+    shuffled.forEach((answer) => {
         const button = document.createElement('button');
         button.className = 'answer-btn';
         button.textContent = answer.text;
@@ -336,9 +351,11 @@ function showResult() {
     
     resultDescription.innerHTML = `<p>${pietResult.description}</p>`;
 
-    // Render percentages en pepernoot-chart
-    renderPepernootChart(scores);
-    renderLegend(scores);
+    // Statistieken standaard verborgen; render bij toggle
+    if (statsSection && !statsSection.classList.contains('hidden')) {
+        renderPepernootChart(scores);
+        renderLegend(scores);
+    }
 }
 
 function restartQuiz() {
@@ -364,6 +381,24 @@ function restartQuiz() {
     // Ga terug naar start scherm
     resultScreen.classList.remove('active');
     startScreen.classList.add('active');
+    // Statistieken verbergen en knop resetten
+    if (statsSection) {
+        statsSection.classList.add('hidden');
+    }
+    if (toggleStatsBtn) {
+        toggleStatsBtn.textContent = 'Toon statistieken';
+        toggleStatsBtn.setAttribute('aria-expanded', 'false');
+    }
+}
+
+// Utility: shuffle array
+function shuffleArray(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
 }
 
 // Render de pepernoot piechart
@@ -379,16 +414,41 @@ function renderPepernootChart(scoreMap) {
     // Wis canvas
     ctx.clearRect(0, 0, w, h);
 
-    // Basis pepernoot achtergrond
+    // Teken cirkelrand eerst (voor een nette aflijning)
     ctx.beginPath();
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.closePath();
-    ctx.fillStyle = '#c08a4d'; // pepernoot bruin
-    ctx.fill();
-    // Rand
     ctx.strokeStyle = '#8a5a2b';
-    ctx.lineWidth = 6;
+    ctx.lineWidth = 4;
     ctx.stroke();
+
+    // Emoji/koek-achtergrond – clip op cirkel en centreer exact met tekst-metrics
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.clip();
+
+    const emoji = '🍪';
+    const baseSize = 100; // px
+    ctx.font = `${baseSize}px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif`;
+    let metrics = ctx.measureText(emoji);
+    const baseWidth = metrics.width;
+    const baseHeight = (metrics.actualBoundingBoxAscent || baseSize * 0.8) + (metrics.actualBoundingBoxDescent || baseSize * 0.2);
+    const diameter = r * 2;
+    const scale = Math.min(diameter / baseWidth, diameter / baseHeight) * 1.06; // licht oversizen voor strakke rand
+    const finalSize = Math.floor(baseSize * scale);
+
+    ctx.font = `${finalSize}px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'alphabetic';
+    metrics = ctx.measureText(emoji);
+    const ascent = metrics.actualBoundingBoxAscent || finalSize * 0.8;
+    const descent = metrics.actualBoundingBoxDescent || finalSize * 0.2;
+    const height = ascent + descent;
+    const baselineY = cy + (ascent - height / 2);
+    ctx.fillText(emoji, cx, baselineY);
+    ctx.restore();
 
     // Bereken totaal
     const entries = Object.entries(scoreMap).filter(([, v]) => v > 0);
@@ -404,31 +464,24 @@ function renderPepernootChart(scoreMap) {
         ctx.moveTo(cx, cy);
         ctx.arc(cx, cy, r, start, end);
         ctx.closePath();
-        // Semi-transparante kleur zodat pepernoot zichtbaar blijft
+        // Semi-transparante kleur zodat emoji zichtbaar blijft
         const color = pietColors[type] || '#444';
-        ctx.fillStyle = hexToRgba(color, 0.88);
+        ctx.fillStyle = hexToRgba(color, 0.65);
         ctx.fill();
         start = end;
     });
 
-    // Subtiele kruimel-structuur
-    addCrumbs(ctx, cx, cy, r);
+    // Emoji is de achtergrond; geen extra textuur nodig
+    // Herteken de cirkelrand zodat segmenten de rand niet overschilderen
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(138, 90, 43, 0.9)';
+    ctx.lineWidth = 4;
+    ctx.stroke();
 }
 
-function addCrumbs(ctx, cx, cy, r) {
-    ctx.fillStyle = 'rgba(74, 44, 16, 0.25)';
-    for (let i = 0; i < 40; i++) {
-        const angle = Math.random() * Math.PI * 2;
-        const radius = Math.random() * (r - 12);
-        const x = cx + Math.cos(angle) * radius;
-        const y = cy + Math.sin(angle) * radius;
-        const size = Math.random() * 2.2 + 0.6;
-        ctx.beginPath();
-        ctx.arc(x, y, size, 0, Math.PI * 2);
-        ctx.closePath();
-        ctx.fill();
-    }
-}
+// (Geen extra kruimel/scheur-effecten nodig bij emoji-achtergrond)
 
 function hexToRgba(hex, alpha = 1) {
     const clean = hex.replace('#', '');

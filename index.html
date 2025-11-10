@@ -51,8 +51,12 @@
                     </div>
                     <div id="result-description" class="result-description">
                     </div>
+                    <!-- Toggle statistieken -->
+                    <div class="stats-toggle">
+                        <button id="toggle-stats-btn" class="btn-tertiary" aria-controls="chart-legend pepernoot-chart" aria-expanded="false">Toon statistieken</button>
+                    </div>
                     <!-- Pepernoot Pie Chart -->
-                    <section class="chart-wrapper" aria-label="Pepernoot verdeling per Piet-type">
+                    <section id="stats-section" class="chart-wrapper hidden" aria-label="Pepernoot verdeling per Piet-type">
                         <h3 class="chart-title">Jouw Piet-verdeling</h3>
                         <div class="pepernoot-chart-container">
                             <canvas id="pepernoot-chart" width="280" height="280" aria-label="Pepernoot piechart"></canvas>

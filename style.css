@@ -245,6 +245,37 @@ header p {
     border-left: 4px solid #667eea;
 }
 
+.hidden { display: none; }
+
+.stats-toggle {
+    margin: 16px 0 8px;
+}
+
+/* Kleine, lichtgrijze knop voor statistieken */
+.btn-tertiary {
+    background: linear-gradient(45deg, #e2e8f0, #cbd5e0);
+    color: white;
+    border: none;
+    padding: 10px 26px;
+    font-size: 0.95em;
+    border-radius: 50px; /* consistent met primaire/secondaire knoppen */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(160, 174, 192, 0.35);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.btn-tertiary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(160, 174, 192, 0.45);
+}
+
+.result-content .btn-secondary {
+    margin-top: 18px; /* extra ruimte t.o.v. toggle */
+}
+
 /* Pepernoot chart */
 .chart-wrapper {
     margin: 25px 0 10px;
@@ -270,8 +301,8 @@ header p {
 
 #pepernoot-chart {
     border-radius: 50%;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12), inset 0 0 0 6px #8a5a2b;
-    background: radial-gradient(circle at 30% 30%, #c89a5a 0%, #c08a4d 45%, #b37a3e 70%, #a4682d 100%);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.10);
+    background: transparent; /* emoji in canvas vervangt achtergrond */
 }
 
 .chart-legend {
