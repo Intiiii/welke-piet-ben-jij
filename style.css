@@ -265,6 +265,22 @@ footer {
     animation: bounce 2s infinite;
 }
 
+/* Kleuren voor verschillende Piet types */
+.piet-hoofdpiet { background: linear-gradient(135deg, #2d3748, #4a5568); }
+.piet-snoeppiet { background: linear-gradient(135deg, #e53e3e, #dd6b20); }
+.piet-muziekpiet { background: linear-gradient(135deg, #3182ce, #63b3ed); }
+.piet-knutselpiet { background: linear-gradient(135deg, #38a169, #68d391); }
+.piet-boekpiet { background: linear-gradient(135deg, #805ad5, #b794f6); }
+.piet-wellespiet { background: linear-gradient(135deg, #d69e2e, #f6ad55); }
+.piet-pietjepaniek { background: linear-gradient(135deg, #e53e3e, #feb2b2); }
+.piet-vergeetpiet { background: linear-gradient(135deg, #718096, #a0aec0); }
+.piet-mallepiet { background: linear-gradient(135deg, #d53f8c, #fbb6ce); }
+.piet-proefpiet { background: linear-gradient(135deg, #319795, #81e6d9); }
+.piet-verdwaalpiet { background: linear-gradient(135deg, #6b46c1, #b794f4); }
+.piet-smeerpoetspiet { background: linear-gradient(135deg, #00a3c4, #7dd3fc); }
+.piet-rijmpiet { background: linear-gradient(135deg, #d53f8c, #f687b3); }
+.piet-slimpiet { background: linear-gradient(135deg, #553c9a, #b794f4); }
+
 /* Responsive design */
 @media (max-width: 600px) {
     .container {

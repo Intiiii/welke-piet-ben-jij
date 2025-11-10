@@ -6,7 +6,11 @@ const quizData = [
             { text: "Cadeautjes inpakken en versieren", type: "hoofdpiet" },
             { text: "Snoepgoed maken en proeven", type: "snoeppiet" },
             { text: "Liedjes zingen en muziek maken", type: "muziekpiet" },
-            { text: "Knutselen en creatief bezig zijn", type: "knutselpiet" }
+            { text: "Knutselen en creatief bezig zijn", type: "knutselpiet" },
+            { text: "Boeken lezen en verhalen vertellen", type: "boekpiet" },
+            { text: "Alles schoonmaken en poetsen", type: "smeerpoetspiet" },
+            { text: "Rijmen en gedichten maken", type: "rijmpiet" },
+            { text: "Slimme oplossingen bedenken", type: "slimpiet" }
         ]
     },
     {
@@ -15,7 +19,11 @@ const quizData = [
             { text: "Ik blijf kalm en overzie het hele overzicht", type: "hoofdpiet" },
             { text: "Ik probeer eerst even iets lekkers te eten", type: "snoeppiet" },
             { text: "Ik zing een vrolijk liedje om de sfeer te verbeteren", type: "muziekpiet" },
-            { text: "Ik maak iets creatiefs om het probleem op te lossen", type: "knutselpiet" }
+            { text: "Ik maak iets creatiefs om het probleem op te lossen", type: "knutselpiet" },
+            { text: "Ik zoek in een boek naar de oplossing", type: "boekpiet" },
+            { text: "Ik raak in paniek en weet niet wat te doen", type: "pietjepaniek" },
+            { text: "Ik vergeet waar ik mee bezig was", type: "vergeetpiet" },
+            { text: "Ik gebruik mijn intelligentie", type: "slimpiet" }
         ]
     },
     {
@@ -24,7 +32,11 @@ const quizData = [
             { text: "Organiseren en leiding geven", type: "hoofdpiet" },
             { text: "Heerlijke recepten bedenken", type: "snoeppiet" },
             { text: "Muziek maken en entertainen", type: "muziekpiet" },
-            { text: "Mooie dingen maken met mijn handen", type: "knutselpiet" }
+            { text: "Mooie dingen maken met mijn handen", type: "knutselpiet" },
+            { text: "Verhalen vertellen en voorlezen", type: "boekpiet" },
+            { text: "Grappen uithalen en lol maken", type: "mallepiet" },
+            { text: "Nieuwe dingen uitproberen", type: "proefpiet" },
+            { text: "Slimme vragen stellen", type: "slimpiet" }
         ]
     },
     {
@@ -33,7 +45,11 @@ const quizData = [
             { text: "Plannen maken en lijstjes bijhouden", type: "hoofdpiet" },
             { text: "Nieuwe recepten uitproberen", type: "snoeppiet" },
             { text: "Naar muziek luisteren of zelf muziek maken", type: "muziekpiet" },
-            { text: "DIY-projecten starten", type: "knutselpiet" }
+            { text: "DIY-projecten starten", type: "knutselpiet" },
+            { text: "Boeken lezen en verhalen bedenken", type: "boekpiet" },
+            { text: "Mopperen en klagen", type: "wellespiet" },
+            { text: "Dingen vergeten en zoeken", type: "vergeetpiet" },
+            { text: "Rijmen en dichten", type: "rijmpiet" }
         ]
     },
     {
@@ -42,7 +58,11 @@ const quizData = [
             { text: "Ik overzie de situatie en bedenk een plan", type: "hoofdpiet" },
             { text: "Ik zoek troost in iets lekkers", type: "snoeppiet" },
             { text: "Ik probeer het positief te houden met een liedje", type: "muziekpiet" },
-            { text: "Ik ga aan de slag om het te repareren", type: "knutselpiet" }
+            { text: "Ik ga aan de slag om het te repareren", type: "knutselpiet" },
+            { text: "Ik zeg 'Welles!' en wijs naar een ander", type: "wellespiet" },
+            { text: "Ik verstop me en hoop dat het overwaait", type: "pietjepaniek" },
+            { text: "Ik verzin een slimme oplossing", type: "slimpiet" },
+            { text: "Ik raak verdwaald in mijn gedachten", type: "verdwaalpiet" }
         ]
     },
     {
@@ -51,7 +71,11 @@ const quizData = [
             { text: "Een goed georganiseerd bord met van alles", type: "hoofdpiet" },
             { text: "Zelfgemaakte chocoladeletters", type: "snoeppiet" },
             { text: "Pepernoten (vooral vanwege het ritme)", type: "muziekpiet" },
-            { text: "Snoepgoed dat er ook nog eens mooi uitziet", type: "knutselpiet" }
+            { text: "Snoepgoed dat er ook nog eens mooi uitziet", type: "knutselpiet" },
+            { text: "Boekvormige koekjes", type: "boekpiet" },
+            { text: "Ik vind alles lekker!", type: "mallepiet" },
+            { text: "Ik vergeet wat ik lekker vind", type: "vergeetpiet" },
+            { text: "Ik experimenteer met nieuwe smaken", type: "proefpiet" }
         ]
     },
     {
@@ -60,7 +84,11 @@ const quizData = [
             { text: "Een notitieboek om alles te plannen", type: "hoofdpiet" },
             { text: "Een voorraad lekker eten", type: "snoeppiet" },
             { text: "Een muziekinstrument", type: "muziekpiet" },
-            { text: "Een doos met knutselspullen", type: "knutselpiet" }
+            { text: "Een doos met knutselspullen", type: "knutselpiet" },
+            { text: "Een boek vol avonturen", type: "boekpiet" },
+            { text: "Een kompas (maar ik raak toch verdwaald)", type: "verdwaalpiet" },
+            { text: "Een grappenboek", type: "mallepiet" },
+            { text: "Een wetenschappelijk naslagwerk", type: "slimpiet" }
         ]
     },
     {
@@ -69,7 +97,11 @@ const quizData = [
             { text: "Ik ben een natuurlijke leider", type: "hoofdpiet" },
             { text: "Ik ben een genieter van het leven", type: "snoeppiet" },
             { text: "Ik ben altijd vrolijk en muzikaal", type: "muziekpiet" },
-            { text: "Ik ben creatief en handig", type: "knutselpiet" }
+            { text: "Ik ben creatief en handig", type: "knutselpiet" },
+            { text: "Ik ben een verhalenverteller", type: "boekpiet" },
+            { text: "Ik ben een grappenmaker", type: "mallepiet" },
+            { text: "Ik ben slim en bedachtzaam", type: "slimpiet" },
+            { text: "Ik ben vergeetachtig en chaotisch", type: "vergeetpiet" }
         ]
     }
 ];
@@ -99,6 +131,66 @@ const pietTypes = {
         emoji: "✂️",
         description: "Jij bent een creatieve duizendpoot! Net als Knutselpiet kun je met jouw handen mooie dingen maken. Je bent handig, inventief en ziet overal mogelijkheden om iets moois te creëren. Je hebt geduld en doorzettingsvermogen, en je weet dat met een beetje creativiteit alles mogelijk is!",
         characteristics: ["Handig", "Creatief", "Geduldig", "Inventief"]
+    },
+    boekpiet: {
+        name: "Boekpiet",
+        emoji: "📚",
+        description: "Jij bent een ware kennisdief! Net als Boekpiet ben je dol op verhalen, boeken en kennis verzamelen. Je bent wijs, leergierig en kunt urenlang genieten van een goed boek. Je hebt altijd wel een interessant weetje paraat en andere Pieten komen bij jou voor advies en verhalen!",
+        characteristics: ["Wijs", "Leergierig", "Verhalenverteller", "Kennisrijk"]
+    },
+    wellespiet: {
+        name: "Wellespiet",
+        emoji: "🙅‍♂️",
+        description: "Jij bent een eigenwijze denker! Net als Wellespiet heb je altijd je eigen mening en laat je je niet zomaar overtuigen. Je bent kritisch, analytisch en twijfelt vaak aan dingen. Soms ben je wat mopperig, maar dat komt omdat je de dingen graag goed wilt doen. Je bent een echte discussiërd!",
+        characteristics: ["Kritisch", "Eigenwijs", "Analytisch", "Mopperig"]
+    },
+    pietjepaniek: {
+        name: "Pietje Paniek",
+        emoji: "😱",
+        description: "Jij bent een wat nerveuze type! Net als Pietje Paniek raak je snel in paniek als er iets misgaat. Je bent wat angstig, maar ook lief en zorgzaam. Je hebt een goed hart en bedoelt het altijd goed, zelfs als je wat schrikkerig bent. Andere Pieten weten dat ze op jouw zorgzaamheid kunnen rekenen!",
+        characteristics: ["Zorgzaam", "Angstig", "Lief", "Paniekerig"]
+    },
+    vergeetpiet: {
+        name: "Vergeetpiet",
+        emoji: "🤔",
+        description: "Jij bent een beetje vergeetachtig! Net als Vergeetpiet vergeet je weleens dingen, maar je bent ook creatief in het verzinnen van oplossingen. Je bent chaotisch, maar ook vindingrijk. Je hebt een goed hart en bedoelt het altijd goed, zelfs als je dingen vergeet. Je brengt onverwachte momenten van verrassing!",
+        characteristics: ["Vergeetachtig", "Chaotisch", "Vindingrijk", "Lief"]
+    },
+    mallepiet: {
+        name: "Malle Piet",
+        emoji: "🤪",
+        description: "Jij bent een echte clown! Net als Malle Piet weet jij iedereen aan het lachen te maken met jouw grappen en grollen. Je bent vrolijk, spontaan en altijd in voor een geintje. Je hebt een positieve kijk op het leven en weet dat humor de beste medicijn is. Je bent de vrolijke noot in elk gezelschap!",
+        characteristics: ["Grappig", "Vrolijk", "Spontaan", "Clownesk"]
+    },
+    proefpiet: {
+        name: "Proefpiet",
+        emoji: "🧪",
+        description: "Jij bent een ware uitvinder! Net als Proefpiet ben je altijd bezig met nieuwe dingen uitproberen en experimenteren. Je bent nieuwsgierig, onderzoekend en durft risico's te nemen. Soms mislukken je experimenten, maar vaak ontdek je iets geweldigs nieuws. Je bent een pionier in hart en nieren!",
+        characteristics: ["Experimenteel", "Nieuwsgierig", "Onderzoekend", "Durver"]
+    },
+    verdwaalpiet: {
+        name: "Verdwaalpiet",
+        emoji: "🗺️",
+        description: "Jij bent een avontuurlijke dromer! Net als Verdwaalpiet raak je weleens verdwaald in je gedachten of in de wereld. Je bent een dromer, avontuurlijk en altijd op ontdekkingstocht. Je hebt een rijke fantasie en ziet overal nieuwe mogelijkheden. Je brengt avontuur en verrassing in het leven!",
+        characteristics: ["Dromerig", "Avontuurlijk", "Verdwaald", "Fantasierijk"]
+    },
+    smeerpoetspiet: {
+        name: "Piet de Smeerpoets",
+        emoji: "🧽",
+        description: "Jij bent een ware schoonmaakfanaat! Net als Piet de Smeerpoets houd je van netheid en orde. Je bent geduldig, secuur en vindt voldoening in een schone omgeving. Je bent betrouwbaar en andere Pieten weten dat ze op jouw kunnen rekenen voor een schone boel. Je maakt alles weer blinkend schoon!",
+        characteristics: ["Schoon", "Geduldig", "Secuur", "Betrouwbaar"]
+    },
+    rijmpiet: {
+        name: "Rijmpiet",
+        emoji: "📝",
+        description: "Jij bent een dichter in hart en nieren! Net als Rijmpiet ben je dol op rijmen, dichten en woordspelletjes. Je bent creatief met taal, hebt een rijke fantasie en kunt urenlang bezig zijn met het vinden van het perfecte rijmwoord. Je brengt poëzie en creativiteit in het leven van anderen!",
+        characteristics: ["Dichter", "Creatief", "Taalgevoelig", "Fantasierijk"]
+    },
+    slimpiet: {
+        name: "Slimpiet",
+        emoji: "🧠",
+        description: "Jij bent een briljante denker! Net als Slimpiet ben je slim, intelligent en altijd bezig met het oplossen van complexe problemen. Je bent analytisch, logisch en andere Pieten komen bij jou voor slimme oplossingen. Je hebt een scherpe geest en weet dat kennis macht is!",
+        characteristics: ["Slim", "Intelligent", "Analytisch", "Oplossingsgericht"]
     }
 };
 
@@ -108,7 +200,17 @@ let scores = {
     hoofdpiet: 0,
     snoeppiet: 0,
     muziekpiet: 0,
-    knutselpiet: 0
+    knutselpiet: 0,
+    boekpiet: 0,
+    wellespiet: 0,
+    pietjepaniek: 0,
+    vergeetpiet: 0,
+    mallepiet: 0,
+    proefpiet: 0,
+    verdwaalpiet: 0,
+    smeerpoetspiet: 0,
+    rijmpiet: 0,
+    slimpiet: 0
 };
 
 // DOM elementen
@@ -197,6 +299,9 @@ function showResult() {
     
     const pietResult = pietTypes[winner];
     
+    // Verwijder alle piet-klassen en voeg de juiste toe
+    resultPiet.className = 'result-piet piet-' + winner;
+    
     // Toon resultaat
     resultPiet.innerHTML = `
         <h3>Je bent: ${pietResult.name}!</h3>
@@ -219,7 +324,17 @@ function restartQuiz() {
         hoofdpiet: 0,
         snoeppiet: 0,
         muziekpiet: 0,
-        knutselpiet: 0
+        knutselpiet: 0,
+        boekpiet: 0,
+        wellespiet: 0,
+        pietjepaniek: 0,
+        vergeetpiet: 0,
+        mallepiet: 0,
+        proefpiet: 0,
+        verdwaalpiet: 0,
+        smeerpoetspiet: 0,
+        rijmpiet: 0,
+        slimpiet: 0
     };
     
     // Ga terug naar start scherm
