@@ -436,7 +436,7 @@ function renderPepernootChart(scoreMap) {
     const baseWidth = metrics.width;
     const baseHeight = (metrics.actualBoundingBoxAscent || baseSize * 0.8) + (metrics.actualBoundingBoxDescent || baseSize * 0.2);
     const diameter = r * 2;
-    const scale = Math.min(diameter / baseWidth, diameter / baseHeight) * 1.06; // licht oversizen voor strakke rand
+    const scale = Math.min(diameter / baseWidth, diameter / baseHeight) * 1.30; // nog een stap groter voor vollere cirkel
     const finalSize = Math.floor(baseSize * scale);
 
     ctx.font = `${finalSize}px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif`;
