@@ -226,6 +226,26 @@ const totalQuestionsSpan = document.getElementById('total-questions');
 const progressBar = document.getElementById('progress');
 const resultPiet = document.getElementById('result-piet');
 const resultDescription = document.getElementById('result-description');
+const chartCanvas = document.getElementById('pepernoot-chart');
+const chartLegend = document.getElementById('chart-legend');
+
+// Kleuren per Piet-type (voor chart)
+const pietColors = {
+    hoofdpiet: '#4a5568',
+    snoeppiet: '#dd6b20',
+    muziekpiet: '#63b3ed',
+    knutselpiet: '#68d391',
+    boekpiet: '#b794f6',
+    wellespiet: '#f6ad55',
+    pietjepaniek: '#feb2b2',
+    vergeetpiet: '#a0aec0',
+    mallepiet: '#fbb6ce',
+    proefpiet: '#81e6d9',
+    verdwaalpiet: '#b794f4',
+    smeerpoetspiet: '#7dd3fc',
+    rijmpiet: '#f687b3',
+    slimpiet: '#9f7aea'
+};
 
 // Event listeners
 startBtn.addEventListener('click', startQuiz);
@@ -315,6 +335,10 @@ function showResult() {
     `;
     
     resultDescription.innerHTML = `<p>${pietResult.description}</p>`;
+
+    // Render percentages en pepernoot-chart
+    renderPepernootChart(scores);
+    renderLegend(scores);
 }
 
 function restartQuiz() {
@@ -340,4 +364,100 @@ function restartQuiz() {
     // Ga terug naar start scherm
     resultScreen.classList.remove('active');
     startScreen.classList.add('active');
+}
+
+// Render de pepernoot piechart
+function renderPepernootChart(scoreMap) {
+    if (!chartCanvas) return;
+    const ctx = chartCanvas.getContext('2d');
+    const w = chartCanvas.width;
+    const h = chartCanvas.height;
+    const cx = w / 2;
+    const cy = h / 2;
+    const r = Math.min(w, h) / 2 - 8;
+
+    // Wis canvas
+    ctx.clearRect(0, 0, w, h);
+
+    // Basis pepernoot achtergrond
+    ctx.beginPath();
+    ctx.arc(cx, cy, r, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fillStyle = '#c08a4d'; // pepernoot bruin
+    ctx.fill();
+    // Rand
+    ctx.strokeStyle = '#8a5a2b';
+    ctx.lineWidth = 6;
+    ctx.stroke();
+
+    // Bereken totaal
+    const entries = Object.entries(scoreMap).filter(([, v]) => v > 0);
+    const total = entries.reduce((sum, [, v]) => sum + v, 0);
+    if (total === 0) return; // geen scores, niets tekenen
+
+    // Teken segmenten
+    let start = -Math.PI / 2; // start bovenaan
+    entries.forEach(([type, value]) => {
+        const angle = (value / total) * Math.PI * 2;
+        const end = start + angle;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.arc(cx, cy, r, start, end);
+        ctx.closePath();
+        // Semi-transparante kleur zodat pepernoot zichtbaar blijft
+        const color = pietColors[type] || '#444';
+        ctx.fillStyle = hexToRgba(color, 0.88);
+        ctx.fill();
+        start = end;
+    });
+
+    // Subtiele kruimel-structuur
+    addCrumbs(ctx, cx, cy, r);
+}
+
+function addCrumbs(ctx, cx, cy, r) {
+    ctx.fillStyle = 'rgba(74, 44, 16, 0.25)';
+    for (let i = 0; i < 40; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const radius = Math.random() * (r - 12);
+        const x = cx + Math.cos(angle) * radius;
+        const y = cy + Math.sin(angle) * radius;
+        const size = Math.random() * 2.2 + 0.6;
+        ctx.beginPath();
+        ctx.arc(x, y, size, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.fill();
+    }
+}
+
+function hexToRgba(hex, alpha = 1) {
+    const clean = hex.replace('#', '');
+    const bigint = parseInt(clean.length === 3 ? clean.split('').map(c => c + c).join('') : clean, 16);
+    const r = (bigint >> 16) & 255;
+    const g = (bigint >> 8) & 255;
+    const b = bigint & 255;
+    return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+// Legenda met percentages
+function renderLegend(scoreMap) {
+    if (!chartLegend) return;
+    const entries = Object.entries(scoreMap).filter(([, v]) => v > 0);
+    const total = entries.reduce((sum, [, v]) => sum + v, 0);
+    // Sorteer op aflopend percentage
+    entries.sort((a, b) => b[1] - a[1]);
+    const items = entries.map(([type, value]) => {
+        const percent = Math.round((value / total) * 100);
+        const color = pietColors[type] || '#444';
+        const name = pietTypes[type]?.name || type;
+        return `
+            <div class="legend-item">
+                <span class="legend-swatch" style="background:${color}"></span>
+                <span class="legend-label">${name}</span>
+                <span class="legend-percent">${percent}%</span>
+                <span class="legend-points">(${value} punt${value === 1 ? '' : 'en'})</span>
+            </div>
+        `;
+    });
+    chartLegend.innerHTML = items.length ? items.join('') : '<p>Geen verdeling beschikbaar.</p>';
 }
